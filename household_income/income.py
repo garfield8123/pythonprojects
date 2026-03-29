@@ -43,9 +43,15 @@ def downloadpdf(website, filename):
     #print("✅ PDF downloaded successfully")
 
 
+def getincomekeys(numofhousehold, county):
+    downloadpdf("https://www.hcd.ca.gov/sites/default/files/docs/grants-and-funding/income-limits-2025.pdf", "income-limits-2025.pdf")
+    incomedict = incomedata("income-limits-2025.pdf", int(numofhousehold))
+    return incomedict.keys()
+
 def getincomedata(numofhousehold, county):
     downloadpdf("https://www.hcd.ca.gov/sites/default/files/docs/grants-and-funding/income-limits-2025.pdf", "income-limits-2025.pdf")
-    return incomedata("income-limits-2025.pdf", int(numofhousehold)).get(county)
+    incomedict = incomedata("income-limits-2025.pdf", int(numofhousehold))
+    return incomedict.get(county)
 
 
 #https://www.hcd.ca.gov/sites/default/files/docs/grants-and-funding/income-limits-2025.pdf

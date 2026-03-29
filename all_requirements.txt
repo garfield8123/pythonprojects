@@ -4,7 +4,8 @@ discord
 # From ./dcodefr/requirements.txt
 selenium 
 beautifulsoup4
-webdriver-manager
+webdriver-
+undetected-chromedriver
 
 # From ./Currentemp/requirements.txt
 openmeteo-requests

@@ -4,6 +4,7 @@ import asyncio
 from Currentemp.currenttemp import gettemperature
 from dcodefr.cipheridentifier import identifycipher
 from household_income.income import getincomedata 
+from household_income.income import getincomekeys
 
 
 intents = discord.Intents.default()
@@ -23,8 +24,14 @@ async def on_message(message):
         await message.channel.send(identifycipher(ciphertext))
     if message.content.startswith("household"):
         numofhousehold = message.content.split(" ")[1]
-        County = message.content.split(" ")[1:len(message.content.split(" "))-1]
+        County = message.content.split(" ")[2:len(message.content.split(" "))]
+        County = " ".join(County)
         await message.channel.send(getincomedata(numofhousehold, County))
+    if message.content.startswith("householdkey"):
+        numofhousehold = message.content.split(" ")[1]
+        County = message.content.split(" ")[2:len(message.content.split(" "))]
+        County = " ".join(County)
+        await message.channel.send(getincomekeys(numofhousehold, County))
 
 
 @client.event
