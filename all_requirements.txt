@@ -1,10 +1,14 @@
 # From ./discord/requirements.txt
 discord
 
+# From ./household_income/requirements.txt
+pdfplumber
+requests
+
 # From ./dcodefr/requirements.txt
 selenium 
 beautifulsoup4
-webdriver-
+webdriver-manager
 undetected-chromedriver
 
 # From ./Currentemp/requirements.txt
