@@ -1,0 +1,14 @@
+# From ./discord/requirements.txt
+discord
+
+# From ./dcodefr/requirements.txt
+selenium 
+beautifulsoup4
+webdriver-manager
+
+# From ./Currentemp/requirements.txt
+openmeteo-requests
+requests-cache 
+retry-requests 
+geopy
+
