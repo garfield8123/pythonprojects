@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ROOT_DIR="${1:-.}"
-OUTPUT_FILE="all_requirements.txt"
+OUTPUT_FILE="requirements.txt"
 
 > "$OUTPUT_FILE"  # clear file
 

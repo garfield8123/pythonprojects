@@ -17,3 +17,6 @@ requests-cache
 retry-requests 
 geopy
 
+# From ./requirements.txt
+
+
