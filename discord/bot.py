@@ -21,7 +21,7 @@ async def on_message(message):
         await message.channel.send(gettemperature(location))
     if message.content.startswith("cipher"):
         ciphertext = message.content.split(" ", 1)[1]
-        await message.channel.send(identifycipher(ciphertext))
+        await message.channel.send(await identifycipher(ciphertext))
     if message.content.startswith("household"):
         numofhousehold = message.content.split(" ")[1]
         County = message.content.split(" ")[2:len(message.content.split(" "))]
