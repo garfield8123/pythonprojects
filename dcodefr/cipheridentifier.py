@@ -1,13 +1,14 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+
 from bs4 import BeautifulSoup
 
 def loadwebsite(site, ciphertext):
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions
+    from selenium.webdriver.chrome.service import Service
+    from webdriver_manager.chrome import ChromeDriverManager
     chrome_options = Options()
     chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--no-sandbox")
@@ -40,6 +41,31 @@ def loadwebsite(site, ciphertext):
     driver.quit()
     return page
 
+def loadplaywrightwebsite(site, ciphertext):
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
+            headless=True,
+            args=["--no-sandbox", "--disable-dev-shm-usage"]
+        )
+        page = browser.new_page()
+        # Go to site
+        page.goto(site)
+        # Type in ciphertext
+        page.fill("#cipher_identifier_ciphertext", ciphertext)
+        # Click analyze button
+        page.click('[data-post="ciphertext,clues"]')
+        # Wait for result div
+        try:
+            page.wait_for_selector("div.result", timeout=10000)
+        except:
+            print("Result div did not appear in time.")
+        # Get page content
+        html = page.content()
+        browser.close()
+    # Parse with BeautifulSoup (same as before)
+    page = BeautifulSoup(html, features='html.parser')
+    return page
 
 def identifycipher(cipher):
     page = loadwebsite('https://www.dcode.fr/cipher-identifier', 
