@@ -68,7 +68,7 @@ def loadplaywrightwebsite(site, ciphertext):
     return page
 
 def identifycipher(cipher):
-    page = loadwebsite('https://www.dcode.fr/cipher-identifier', 
+    page = loadplaywrightwebsite('https://www.dcode.fr/cipher-identifier', 
                    cipher)
 
     from urllib.parse import urljoin
