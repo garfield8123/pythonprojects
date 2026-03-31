@@ -41,37 +41,46 @@ def loadwebsite(site, ciphertext):
     driver.quit()
     return page
 
-def loadplaywrightwebsite(site, ciphertext):
-    from playwright.sync_api import sync_playwright
-    with sync_playwright() as p:
-        browser = p.chromium.launch(
+
+async def loadplaywrightwebsite(site, ciphertext):
+
+    from playwright.async_api import async_playwright
+    from bs4 import BeautifulSoup
+    from urllib.parse import urljoin
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(
             headless=True,
             args=["--no-sandbox", "--disable-dev-shm-usage"]
         )
-        page = browser.new_page()
+
+        page = await browser.new_page()
+
         # Go to site
-        page.goto(site)
+        await page.goto(site)
+
         # Type in ciphertext
-        page.fill("#cipher_identifier_ciphertext", ciphertext)
+        await page.fill("#cipher_identifier_ciphertext", ciphertext)
+
         # Click analyze button
-        page.click('[data-post="ciphertext,clues"]')
+        await page.click('[data-post="ciphertext,clues"]')
+
         # Wait for result div
         try:
-            page.wait_for_selector("div.result", timeout=10000)
+            await page.wait_for_selector("div.result", timeout=10000)
         except:
             print("Result div did not appear in time.")
-        # Get page content
-        html = page.content()
-        browser.close()
-    # Parse with BeautifulSoup (same as before)
-    page = BeautifulSoup(html, features='html.parser')
-    return page
 
-def identifycipher(cipher):
-    page = loadplaywrightwebsite('https://www.dcode.fr/cipher-identifier', 
-                   cipher)
+        html = await page.content()
+        await browser.close()
 
-    from urllib.parse import urljoin
+    return BeautifulSoup(html, features='html.parser')
+
+
+async def identifycipher(cipher):
+    page = await loadplaywrightwebsite(
+        "https://www.dcode.fr/cipher-identifier",
+        cipher
+    )
 
     base_url = "https://www.dcode.fr"
 
@@ -81,9 +90,11 @@ def identifycipher(cipher):
         if (a := r.find('a'))
     ]
 
+    return data[0] if data else ("No result", None)
+
     #print(data[0])
     return data[0]
 
 if __name__ == "__main__":
-    import sys
-    print(identifycipher(sys.argv[1]))
+    import sys, asyncio
+    print(asyncio.run(identifycipher(sys.argv[1])))
