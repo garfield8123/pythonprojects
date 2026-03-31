@@ -46,7 +46,6 @@ async def loadplaywrightwebsite(site, ciphertext):
 
     from playwright.async_api import async_playwright
     from bs4 import BeautifulSoup
-    from urllib.parse import urljoin
     async with async_playwright() as p:
         browser = await p.chromium.launch(
             headless=True,
@@ -77,6 +76,7 @@ async def loadplaywrightwebsite(site, ciphertext):
 
 
 async def identifycipher(cipher):
+    from urllib.parse import urljoin
     page = await loadplaywrightwebsite(
         "https://www.dcode.fr/cipher-identifier",
         cipher
