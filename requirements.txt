@@ -10,6 +10,7 @@ selenium
 beautifulsoup4
 webdriver-manager
 undetected-chromedriver
+playwright
 
 # From ./Currentemp/requirements.txt
 openmeteo-requests
