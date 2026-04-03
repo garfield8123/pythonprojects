@@ -5,6 +5,8 @@ from Currentemp.currenttemp import gettemperature
 from dcodefr.cipheridentifier import identifycipher
 from household_income.income import getincomedata 
 from household_income.income import getincomekeys
+from aiohttp import web
+import os
 
 
 intents = discord.Intents.default()
