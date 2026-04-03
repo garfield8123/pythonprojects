@@ -50,27 +50,35 @@ async def loadplaywrightwebsite(site, ciphertext):
     from playwright.async_api import async_playwright
     from bs4 import BeautifulSoup
 
-    #try:
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(
-            headless=True,
-            args=["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"]
-        )
+    try:
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(
+                headless=True,
+                args=["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"]
+            )
 
-        page = await browser.new_page()
-        await page.goto(site, timeout=30000)
-        await page.fill("#cipher_identifier_ciphertext", ciphertext)
-        await page.click('[data-post="ciphertext,clues"]')
-        await page.wait_for_selector("div.result", timeout=10000)
+            page = await browser.new_page()
 
-        html = await page.content()
-        await browser.close()
+            # Go to site
+            await page.goto(site, timeout=30000)
+
+            # Type in ciphertext
+            await page.fill("#cipher_identifier_ciphertext", ciphertext)
+
+            # Click analyze button
+            await page.click('[data-post="ciphertext,clues"]')
+
+            # Wait for result div
+            await page.wait_for_selector("div.result", timeout=10000)
+
+            html = await page.content()
+            await browser.close()
 
         return BeautifulSoup(html, features='html.parser')
 
-    #except Exception as e:
-    #    print(f"Playwright failed: {e}")  # Logs on Render
-    #    return f"Error: {e}"               # Sends to Discord
+    except Exception as e:
+        print(f"Playwright failed: {e}")
+        return f"Error: {e}"
 
 
 async def identifycipher(cipher):
