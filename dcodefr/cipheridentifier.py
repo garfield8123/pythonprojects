@@ -46,33 +46,31 @@ async def loadplaywrightwebsite(site, ciphertext):
 
     from playwright.async_api import async_playwright
     from bs4 import BeautifulSoup
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(
-            headless=True,
-            args=["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"]
-        )
+    async def loadplaywrightwebsite(site, ciphertext):
+    from playwright.async_api import async_playwright
+    from bs4 import BeautifulSoup
 
-        page = await browser.new_page()
+    try:
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(
+                headless=True,
+                args=["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"]
+            )
 
-        # Go to site
-        await page.goto(site)
-
-        # Type in ciphertext
-        await page.fill("#cipher_identifier_ciphertext", ciphertext)
-
-        # Click analyze button
-        await page.click('[data-post="ciphertext,clues"]')
-
-        # Wait for result div
-        try:
+            page = await browser.new_page()
+            await page.goto(site, timeout=30000)
+            await page.fill("#cipher_identifier_ciphertext", ciphertext)
+            await page.click('[data-post="ciphertext,clues"]')
             await page.wait_for_selector("div.result", timeout=10000)
-        except:
-            print("Result div did not appear in time.")
 
-        html = await page.content()
-        await browser.close()
+            html = await page.content()
+            await browser.close()
 
-    return BeautifulSoup(html, features='html.parser')
+            return BeautifulSoup(html, features='html.parser')
+
+    except Exception as e:
+        print(f"Playwright failed: {e}")  # Logs on Render
+        return f"Error: {e}"               # Sends to Discord
 
 
 async def identifycipher(cipher):
