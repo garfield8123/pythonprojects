@@ -1,0 +1,28 @@
+{
+"aboutMe":{
+    "Name":"Garfield Yang", 
+    "Major":"Technology Information Management B.S.",
+    "School":"University of California Santa Cruz",
+    "Skills":{
+        "HTML":"90", 
+        "Python":"95"
+    },
+    "Certifications":{
+        "CompTIA Network+":"Exp: 11/2027 <div data-iframe-width='150' data-iframe-height='270' data-share-badge-id='2f5082cd-d899-4431-9422-cbd8aa81bf01' data-share-badge-host='https://www.credly.com'></div><script type='text/javascript' async src='//cdn.credly.com/assets/utilities/embed.js'></script>",
+        "CompTIA Security+":"Exp: 12/2028 <div data-iframe-width='150' data-iframe-height='270' data-share-badge-id='db04a15f-9971-467e-a3c4-40df7544e424' data-share-badge-host='https://www.credly.com'></div><script type='text/javascript' async src='//cdn.credly.com/assets/utilities/embed.js'></script>"
+    },
+    "Education":{
+        "CSE 151":"Advanced Computer Networks", 
+        "TIM 172": "Introduction to Management of Technology",
+        "TIM 175": "Business Strategy and Information Systems",
+        "CSE 182": "Introduction to Database Management System", 
+        "TIM 147": "Introduction to Data Mining for Business", 
+        "ECON 113": "Introduction to Econometrics"
+    },
+    "PositionTitle":"Information Security Analyst"
+    },
+"ContactInfo":{
+    "email":"inquiry@garfield8123.com",
+    "Github":"https://github.com/garfield8123"
+    }
+}

@@ -1,0 +1,53 @@
+{
+"Projects":[{
+    "Name":"Advanced Fernet Key Encrpytion",
+    "Link":"https://github.com/garfield8123/AdvancedFernetDataEncryption",
+    "information":"Utilizes Fernet encrpytion, but injects the datetime of the fernet encryption randomly within the plain text data",
+    "tag":["Encryption", "Assymetric", "Fernet", "Python"]
+},
+{
+    "Name":"Custom NAT Network",
+    "Link":"https://github.com/garfield8123/nat_raspberrypi",
+    "information":"NAT network for the raspberry pi that utilizes wlan0 as it's external facing ip interface and eth0 as its internal ip interface.",
+    "tag":["Network", "Linux", "Raspbian", "IOT-device", "NAT"]
+}, 
+{
+    "Name":"Winter's Method",
+    "Link":"https://github.com/garfield8123/Winter_Method",
+    "information":"A Time series machine learning model that uses the winter's statistical forecast method for bus data to calcualte accurate run times",
+    "tag":["AI", "Data Processing", "Python", "Time Series Model", "Bus Data"]
+}, 
+{
+    "Name":"Covid Reporting Tool",
+    "Link":"https://github.com/garfield8123/MatrixviewPdf",
+    "information":"A full stack development that allows Clinical lab scientists to upload the generated covid report of the patient to the site securely through sending generated random token via email and their phone number to be viewed and the pdf of patient results are removed from the site access within 2 weeks.",
+    "tag":["Full-Stack", "PDF", "Lab results", "Python", "Security"]
+}, 
+{
+    "Name":"Hackathon Check in",
+    "Link":"https://github.com/garfield8123/HackathonCheckin",
+    "information":"Custom full stack and fully integrated check in interface with options of saving data as personal text data or SQL database",
+    "tag":["SQL", "Bash", "Python", "Full-Stack", "HTML"]
+},
+{
+    "Name":"Custom API Calls for Quickbooks",
+    "Link":"https://github.com/garfield8123/InvoiceSite",
+    "information":"Custom API calls for Quickbooks to handle things automously",
+    "tag":["API", "Quickbooks", "Python", "Requests", "JSON"]
+}, 
+{
+    "Name":"CTF Writeups",
+    "Link":"writeups.garfield8123.com",
+    "information":"Wordpress blog website where I post ctf writeups I have completed in markdown format",
+    "tag":["Wordpress", "CTF", "CTF-writeups", "Blog", "Markdown"]
+},
+{
+    "Name":"MATE Floats",
+    "Link":"https://github.com/garfield8123/MATE-2023",
+    "information":"Lead in creating the Float, which is part of the MATE competition with Slugbotics",
+    "tag":["Circuit Python", "Pico W", "Robot", "MATE", "Float"]
+}
+
+
+]
+}
