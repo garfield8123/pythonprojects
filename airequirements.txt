@@ -1,0 +1,9 @@
+# Image Model
+torch 
+diffusers 
+transformers 
+accelerate 
+safetensors
+
+#Chat bot
+sentence-transformers
