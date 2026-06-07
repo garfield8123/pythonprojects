@@ -27,9 +27,11 @@ pipe = ZImagePipeline.from_pretrained(
 )
 
 pipe.to("cpu")
+import sys
+text=sys.argv[1:]
 
 image = pipe(
-    prompt="A beautiful mountain landscape at sunrise",
+    prompt=text,
     height=512,
     width=512,
     num_inference_steps=4,
