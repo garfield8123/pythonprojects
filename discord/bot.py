@@ -43,10 +43,8 @@ if localserver:
         print(client.user.id)
         print('------')
 
-    #application ID: 1487685826984022087
-    #Public key: b00006a9a6d636edaedaee0ba3b2906be6f4abf8277a95ff2110ac20089c4789
-    #Token MTQ4NzY4NTgyNjk4NDAyMjA4Nw.GvZofe.nl4r9YbH52iQkIyPKtZrJ5e1YWo7oFMgRrG2MM
-    discordToken="MTQ4NzY4NTgyNjk4NDAyMjA4Nw.GvZofe.nl4r9YbH52iQkIyPKtZrJ5e1YWo7oFMgRrG2MM"
+    import os
+    discordToken=os.environ.get("discordtoken")
     client.run(discordToken)
 else:
     async def handle(request):
@@ -67,7 +65,7 @@ else:
 
     async def main():
         await start_webserver()
-        discordToken="MTQ4NzY4NTgyNjk4NDAyMjA4Nw.GvZofe.nl4r9YbH52iQkIyPKtZrJ5e1YWo7oFMgRrG2MM"
+        discordToken=os.environ.get("discordtoken")
         await client.start(discordToken)
 
     asyncio.run(main())
