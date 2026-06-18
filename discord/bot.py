@@ -5,7 +5,7 @@ from Currentemp.currenttemp import gettemperature
 from dcodefr.cipheridentifier import identifycipher
 from household_income.income import getincomedata 
 from household_income.income import getincomekeys
-#from localimagebot.localimage import generateimage
+from localimagebot.localimage import generateimage
 from aiohttp import web
 import os
 
@@ -35,13 +35,13 @@ async def on_message(message):
         County = message.content.split(" ")[2:len(message.content.split(" "))]
         County = " ".join(County)
         await message.channel.send(getincomekeys(numofhousehold, County))
- #   if message.content.startswith("image"):
- #       text = message.content.split(" ")[1:len(message.content.split(" "))]
- #       text = " ".join(text)
- #       generateimage(text)
- #       with open("output.png", "rb") as f:
- #           picture = discord.File(f)
- #       await message.channel.send(file=picture)
+    if message.content.startswith("image"):
+        text = message.content.split(" ")[1:len(message.content.split(" "))]
+        text = " ".join(text)
+        generateimage(text, "discord")
+        with open("output.png", "rb") as f:
+            picture = discord.File(f)
+        await message.channel.send(file=picture)
 localserver = False
 if localserver:
     @client.event

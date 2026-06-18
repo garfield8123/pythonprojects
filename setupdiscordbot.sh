@@ -2,7 +2,8 @@ function setup(){
     python3 -m venv discordvenv
     source discordvenv/bin/activate
     pip install -r requirements.txt && playwright install chromium
-    export discordtoken=$1
+    # Append the export statement using the second argument ($2) safely
+    echo 'export discordtoken="'"${1}"'"' >> discordvenv/bin/activate
 }
 
 function run(){
@@ -25,7 +26,7 @@ function parse_options {
             exit
             ;;
             --setup)
-            setup
+            setup $2
             exit
             ;;
             --run)

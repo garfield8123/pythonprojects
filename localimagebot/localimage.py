@@ -25,8 +25,10 @@ def extractfullzip():
             zf.extractall(project_dir)
 
 
-def generateimage(text):
+def generateimage(text, discord=None):
     model_dir = project_dir / "Z-Image-Turbo"
+    if discord is not None:
+        model_dir = "localimagebot/Z-Image-Turbo"
     pipe = ZImagePipeline.from_pretrained(
     str(model_dir),
     torch_dtype=torch.float32,
@@ -48,8 +50,6 @@ def generateimage(text):
 def cleanmodel():
     import shutil
     shutil.rmtree("Z-Image-Turbo")
-    import os
-    os.remove("Z-Image-Turbo.zip")
 
 if __name__ == "__main__":
     import sys, asyncio
