@@ -26,6 +26,7 @@ def extractfullzip():
 
 
 def generateimage(text, discord=None):
+    project_dir = Path.cwd()
     model_dir = project_dir / "Z-Image-Turbo"
     if discord is not None:
         model_dir = "localimagebot/Z-Image-Turbo"
