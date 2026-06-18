@@ -1,9 +1,13 @@
-# From ./discord/requirements.txt
-discord
+# From ./Currentemp/requirements.txt
+openmeteo-requests
+requests-cache 
+retry-requests 
+geopy
 
-# From ./household_income/requirements.txt
-pdfplumber
-requests
+# From ./customchatbot/requirements.txt
+transformers
+torch
+sentence-transformers
 
 # From ./dcodefr/requirements.txt
 selenium 
@@ -12,12 +16,20 @@ webdriver-manager
 undetected-chromedriver
 playwright
 
-# From ./Currentemp/requirements.txt
-openmeteo-requests
-requests-cache 
-retry-requests 
-geopy
+# From ./discord/requirements.txt
+discord
+
+# From ./household_income/requirements.txt
+pdfplumber
+requests
 
 # From ./requirements.txt
 
+
+# From ./localimagebot/requirements.txt
+torch 
+diffusers 
+transformers 
+accelerate 
+safetensors
 

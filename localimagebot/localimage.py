@@ -3,7 +3,6 @@ import zipfile
 import torch
 from diffusers import ZImagePipeline
 
-
 project_dir = Path.cwd()
 model_dir = project_dir / "Z-Image-Turbo"
 
@@ -27,21 +26,26 @@ pipe = ZImagePipeline.from_pretrained(
 )
 
 pipe.to("cpu")
-import sys
-text=sys.argv[1:]
 
-image = pipe(
-    prompt=text,
-    height=512,
-    width=512,
-    num_inference_steps=4,
-    guidance_scale=0.0,
-    generator=torch.Generator("cpu").manual_seed(42),
-).images[0]
+def generateimage(text):
+    image = pipe(
+        prompt=text,
+        height=512,
+        width=512,
+        num_inference_steps=4,
+        guidance_scale=0.0,
+        generator=torch.Generator("cpu").manual_seed(42),
+    ).images[0]
 
-image.save("output.png")
+    image.save("output.png")
+
+
 
 import shutil
 shutil.rmtree("Z-Image-Turbo")
 import os
 os.remove("Z-Image-Turbo.zip")
+
+if __name__ == "__main__":
+    import sys, asyncio
+    print(generateimage(sys.argv[1:]))
