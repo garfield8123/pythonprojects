@@ -1,3 +1,4 @@
+from datetime import datetime
 import pdfplumber
 
 def contains_county(data):
@@ -44,13 +45,15 @@ def downloadpdf(website, filename):
 
 
 def getincomekeys(numofhousehold, county):
-    downloadpdf("https://www.hcd.ca.gov/sites/default/files/docs/grants-and-funding/income-limits-2025.pdf", "income-limits-2025.pdf")
-    incomedict = incomedata("income-limits-2025.pdf", int(numofhousehold))
+    year=str(datetime.now().year)
+    downloadpdf("https://www.hcd.ca.gov/sites/default/files/docs/grants-and-funding/income-limits-%s.pdf" %year, "income-limits-%s.pdf" %year)
+    incomedict = incomedata("income-limits-%s.pdf" %year, int(numofhousehold))
     return incomedict.keys()
 
 def getincomedata(numofhousehold, county):
-    downloadpdf("https://www.hcd.ca.gov/sites/default/files/docs/grants-and-funding/income-limits-2025.pdf", "income-limits-2025.pdf")
-    incomedict = incomedata("income-limits-2025.pdf", int(numofhousehold))
+    year=str(datetime.now().year)
+    downloadpdf("https://www.hcd.ca.gov/sites/default/files/docs/grants-and-funding/income-limits-%s.pdf" %year, "income-limits-%s.pdf" %year)
+    incomedict = incomedata("income-limits-%s.pdf" %year, int(numofhousehold))
     return incomedict.get(county)
 
 
