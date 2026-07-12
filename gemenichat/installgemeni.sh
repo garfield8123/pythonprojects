@@ -1,0 +1,1 @@
+git clone https://huggingface.co/google/gemma-4-E4B-it

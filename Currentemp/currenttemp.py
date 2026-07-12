@@ -12,14 +12,23 @@ def gettemperature(location):
 
 	# Make sure all required weather variables are listed here
 	# The order of variables in hourly or daily is important to assign them correctly below
+	from datetime import datetime, timedelta
+
+	# Get today's date
+	today = datetime.now()
+	today_str = today.strftime("%Y-%m-%d")
+
+	# Add 5 days for the end date
+	end_date = today + timedelta(days=5)
+	end_date_str = end_date.strftime("%Y-%m-%d")
 	url = "https://api.open-meteo.com/v1/forecast"
 	params = {
 		"latitude": latitude,
 		"longitude": longitude,
 		"hourly": "temperature_2m",
 		"current": "temperature_2m",
-		"start_date": "2026-03-14",
-		"end_date": "2026-03-28",
+		"start_date": today_str,
+		"end_date": end_date_str,
 	}
 	responses = openmeteo.weather_api(url, params = params)
 
@@ -30,6 +39,7 @@ def gettemperature(location):
 	# Process current data. The order of variables needs to be the same as requested.
 	current = response.Current()
 	current_temperature_2m = (current.Variables(0).Value() *1.8) + 32
+	print(current_temperature_2m)
 	if current_temperature_2m < 80:
 		return "Open Window Current temperature: " + str(int(current_temperature_2m))
 	else:

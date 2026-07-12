@@ -1,0 +1,27 @@
+{
+    "concord": "4150/CA/Concord",
+    "oakland": "13654/CA/Oakland",
+    "berkeley": "1590/CA/Berkeley",
+    "fremont": "6671/CA/Fremont",
+    "walnut_creek": "20635/CA/Walnut-Creek",
+    "pleasanton": "14986/CA/Pleasanton",
+    "dublin": "5159/CA/Dublin",
+    "richmond": "15629/CA/Richmond",
+
+    "san_francisco": "17151/CA/San-Francisco",
+    "san_mateo": "17490/CA/San-Mateo",
+    "daly_city": "4636/CA/Daly-City",
+    "palo_alto": "14325/CA/Palo-Alto",
+    "redwood_city": "15525/CA/Redwood-City",
+    
+    "san_jose": "17420/CA/San-Jose",
+    "sunnyvale": "19457/CA/Sunnyvale",
+    "santa_clara": "17675/CA/Santa-Clara",
+    "milpitas": "12204/CA/Milpitas",
+    "cupertino": "4561/CA/Cupertino",
+   
+    "san_rafael": "17518/CA/San-Rafael",
+    "santa_rosa": "17911/CA/Santa-Rosa",
+    "vallejo": "20371/CA/Vallejo",
+    "napa": "12914/CA/Napa"
+}
