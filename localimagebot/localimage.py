@@ -25,18 +25,32 @@ def extractfullzip():
             zf.extractall(project_dir)
 
 
-def generateimage(text, discord=None):
+def load_model(is_discord=False):
+    """Loads the model into memory once and returns the pipeline."""
     project_dir = Path.cwd()
     model_dir = project_dir / "Z-Image-Turbo"
-    if discord is not None:
-        model_dir = "localimagebot/Z-Image-Turbo"
-    pipe = ZImagePipeline.from_pretrained(
-    str(model_dir),
-    torch_dtype=torch.float32,
-    local_files_only=True,
-    )
+    
+    if is_discord:
+        model_dir = Path("localimagebot/Z-Image-Turbo")
+    
+    # Ensure model is extracted before loading
+    if not model_dir.exists():
+        # Optional: You can trigger your extraction functions here if needed
+        extractpartzip() 
 
+    print("🔄 Loading Z-Image-Turbo model into CPU memory...")
+    pipe = ZImagePipeline.from_pretrained(
+        str(model_dir),
+        torch_dtype=torch.float32,
+        local_files_only=True,
+    )
     pipe.to("cpu")
+    print("✅ Model loaded successfully!")
+    return pipe
+
+
+def generateimage(pipe, text):
+    """Uses the pre-loaded pipeline to generate an image."""
     image = pipe(
         prompt=text,
         height=512,
@@ -46,7 +60,9 @@ def generateimage(text, discord=None):
         generator=torch.Generator("cpu").manual_seed(42),
     ).images[0]
 
-    image.save("output.png")
+    output_path = "output.png"
+    image.save(output_path)
+    return output_path
 
 def cleanmodel():
     import shutil

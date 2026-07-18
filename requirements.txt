@@ -18,13 +18,11 @@ playwright
 
 # From ./discord/requirements.txt
 discord
+python-dotenv
 
 # From ./household_income/requirements.txt
 pdfplumber
 requests
-
-# From ./requirements.txt
-
 
 # From ./localimagebot/requirements.txt
 torch 
@@ -32,4 +30,20 @@ diffusers
 transformers 
 accelerate 
 safetensors
+
+# From ./requirements.txt
+
+
+# From ./housefind/requirements.txt
+selenium 
+beautifulsoup4
+webdriver-manager
+undetected-chromedriver
+playwright
+
+# From ./youtube2mp3/requirements.txt
+scrapetube 
+yt-dlp
+mutagen
+selenium
 
