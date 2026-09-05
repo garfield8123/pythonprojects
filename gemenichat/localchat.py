@@ -12,7 +12,11 @@ class GemmaAnalyzer:
         self.model_path = "gemenichat/gemma-4-E4B-it" if discord is not None else str(model_dir)
         local_only = discord is None
 
-        print(f"Loading processor and model from {self.model_path} onto CPU...")
+        # Dynamically select device and optimal precision datatype
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        torch_dtype = torch.bfloat16 if self.device == "cuda" else torch.float32
+
+        print(f"Loading processor and model from {self.model_path} onto {self.device.upper()}...")
         
         self.processor = AutoProcessor.from_pretrained(
             self.model_path, 
@@ -21,8 +25,8 @@ class GemmaAnalyzer:
         
         self.model = Gemma4ForConditionalGeneration.from_pretrained(
             self.model_path,
-            torch_dtype=torch.bfloat16, # Change to torch.float32 if your CPU lacks bfloat16 support
-            device_map="cpu",           
+            torch_dtype=torch_dtype,
+            device_map=self.device,           
             local_files_only=local_only       
         )
         
@@ -39,8 +43,8 @@ class GemmaAnalyzer:
             return_tensors="pt"
         )
         
-        # Ensure inputs are explicitly on CPU
-        inputs = {k: v.to("cpu") for k, v in inputs.items()}
+        # Ensure inputs are explicitly mapped to the active device
+        inputs = {k: v.to(self.device) for k, v in inputs.items()}
         
         # Configure sampling parameters optimal for Gemma 4 reasoning
         output = self.model.generate(
